@@ -188,8 +188,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Text('I have an Account?'),
                         SizedBox(width: 5),
-                        InkWell(
-                          onTap: () => print('Login pressed'),
+                        TextButton(
+                          onPressed: () => print('Login pressed'),
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size(0, 0),
+                            tapTargetSize: MaterialTapTargetSize
+                                .shrinkWrap, // shrink touch area
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                0,
+                              ), // remove border radius
+                            ),
+                          ),
                           child: Text(
                             'Login',
                             style: TextStyle(color: Colors.green),

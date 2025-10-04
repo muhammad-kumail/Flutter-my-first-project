@@ -34,31 +34,33 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDisabled = disabled || loading;
 
-    return GestureDetector(
-      onTap: isDisabled ? null : onPressed,
-      child: Container(
-        height: height,
-        padding: padding,
-        margin: const EdgeInsets.only(top: 20),
-        width: double.infinity,
-        decoration: isDisabled
-            ? disableStyle ??
-                  BoxDecoration(
-                    color: Colors.grey[400], // disable background
-                    borderRadius: BorderRadius.circular(borderRadius),
-                  )
-            : BoxDecoration(
-                color: backgroundColor,
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-        alignment: Alignment.center,
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      // alignment: Alignment.center,
+      // decoration: BoxDecoration(color: Colors.red),
+      child: ElevatedButton(
+        onPressed: isDisabled ? null : onPressed,
+        style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, height),
+          elevation: 0, // remove shadow
+          backgroundColor: isDisabled
+              ? Colors.grey[400]
+              : backgroundColor, // transparent bg
+          // padding: padding, // remove padding
+          shadowColor: Colors.transparent, // no shadow
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              borderRadius,
+            ), // 👈 Correct place
+          ),
+        ),
         child: loading
             ? SizedBox(
                 width: 24,
                 height: 24,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation<Color>(textColor),
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                 ),
               )
             : Text(
