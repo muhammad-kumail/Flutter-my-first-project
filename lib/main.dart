@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import "./widgets/header.dart";
+// import "./widgets/header.dart";
 import "./widgets/CustomInput.dart";
 import "./widgets/button.dart";
 
@@ -140,9 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                physics: const BouncingScrollPhysics(),
                 children: [
                   CustomInput(
                     label: "Name",
